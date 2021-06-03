@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"babel-watch ./src/index.js"
+    "start": "babel-watch ./src/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +13,9 @@
     "@babel/preset-env": "^7.14.4",
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-watch": "^7.4.1"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.25.0",
+    "express": "^4.17.1"
   }
 }
