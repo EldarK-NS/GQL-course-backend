@@ -1,7 +1,9 @@
 import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
-import { schema } from '../schema'
-import {resolvers} from '../resolvers'
+//schema
+import schema from '../schema.graphql'
+//resolvers
+import { resolvers } from '../resolvers'
 
 export const app = express()
 const server = new ApolloServer({
