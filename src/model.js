@@ -1,3 +1,6 @@
+// const generateId = require('uuid/v1')
+const { v4: uuidv4 } = require('uuid');
+
 const initialDB = [
     [
         "ID-1",
@@ -33,10 +36,27 @@ export const getBookById = (id) => {
     return { id, ...book }
 }
 
-export const saveBook = (title, id, author) => {
-    const receivedBook = { title, author };
-    booksDB.set(id, receivedBook);
+export const saveBook = (book) => {
+    const id = uuidv4()
+    booksDB.set(id, book);
     const savedBook = booksDB.get(id);
     return { id, ...savedBook };
 }
 
+export const removeBook = (id) => {
+    const expectedBook = booksDB.get(id)
+    booksDB.delete(id);
+    return { id, expectedBook }
+}
+
+export const updateBook = (id, receivedBook) => {
+    const previousBook = booksDB.get(id)
+    const expectedBook = {
+        ...previousBook,
+        ...receivedBook
+    }
+    removeBook(id)
+    booksDB.set(id, expectedBook)
+    const savedBook = booksDB.get(id)
+    return { id, ...savedBook }
+}
