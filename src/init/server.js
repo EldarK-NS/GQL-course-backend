@@ -1,16 +1,48 @@
 import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
-//schema
-import schema from './schema.graphql'
+import session from 'express-session'
+import cors from 'cors'
+
+//Config
+import { sessionOptions, corsOptions } from './config'
+
+//Middleware
+import { readToken } from './readToken'
+
+//schema Types
+import schema from './types.graphql'
+
 //resolvers
 import { resolvers } from './resolvers'
 
+//API
+import { api as starshipsAPI } from '../bus/starships/dataSource'
+
 export const app = express()
+
+app.use(session(sessionOptions))
+app.use(cors(corsOptions))
+app.use(readToken)
+
 const server = new ApolloServer({
     typeDefs: schema,
-    resolvers
+    resolvers,
+    dataSources: () => {
+        return {
+            starshipsAPI
+        }
+    },
+    context: ({ req, res }) => {
+        return { req, res }
+    },
+    playground: {
+        settings: {
+            "request.credentials": "include"
+        }
+    }
+
 });
 
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, cors: false });
 
 export { server }

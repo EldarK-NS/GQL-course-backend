@@ -11,13 +11,19 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "babel-plugin-import-graphql": "^2.8.1",
+    "babel-preset-latest-node": "^5.5.1",
     "babel-watch": "^7.4.1"
   },
   "dependencies": {
+    "@babel/runtime": "^7.14.0",
+    "apollo-datasource-rest": "^0.14.0",
     "apollo-server-express": "^2.25.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
     "rimraf": "^3.0.2",
     "uuid": "^8.3.2"
   }

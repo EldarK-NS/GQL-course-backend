@@ -1,11 +1,16 @@
 {
     "presets": [
-        "@babel/preset-env"
+        [
+            "latest-node",
+            {
+                "target": "current"
+            }
+        ]
     ],
     "plugins": [
-        "import-graphql"
+        "import-graphql",
+        "@babel/plugin-transform-runtime"
     ]
 }
 //! presets - for undestanding new ES6
-
 //! plugins-for import .graphql and use schemas without ``
